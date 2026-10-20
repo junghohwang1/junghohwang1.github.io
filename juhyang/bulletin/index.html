@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>주향성경 주보</title>
+<style>
+  :root { --bg: #FBF7F0; --ink: #1B1712; --sub: #6B5E52; --navy: #2F4A73; --gold: #9A6B1E; --card: #FFFFFF; --line: #E6DCCD; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg: #14110E; --ink: #F1EAE0; --sub: #B9AC9C; --navy: #B4C8E8; --gold: #EBC57E; --card: #1F1A15; --line: #3A322A; }
+  }
+  :root[data-theme="dark"] { --bg: #14110E; --ink: #F1EAE0; --sub: #B9AC9C; --navy: #B4C8E8; --gold: #EBC57E; --card: #1F1A15; --line: #3A322A; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: system-ui, -apple-system, "Noto Sans KR", sans-serif; }
+  main { max-width: 420px; margin: 0 auto; padding: 48px 16px; text-align: center; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 28px 20px; }
+  h1 { font-size: 22px; margin: 0 0 6px; letter-spacing: 2px; }
+  .date { color: var(--gold); font-weight: 700; font-size: 18px; min-height: 1.4em; margin: 6px 0 18px; }
+  a.open { display: block; padding: 14px; border-radius: 12px; background: var(--navy); color: var(--bg); font-weight: 700; font-size: 17px; text-decoration: none; }
+  p { color: var(--sub); font-size: 14px; line-height: 1.6; margin: 18px 0 0; }
+  .err { color: #C0392B; }
+</style>
+</head>
+<body>
+<main>
+  <div class="card">
+    <h1>주향성경 주보</h1>
+    <div class="date" id="date"></div>
+    <a class="open" id="open" href="#">주향성경으로 열기</a>
+    <p id="hint">버튼을 누르면 주향성경 앱의 주보 탭에 이 주보가 들어옵니다.<br>주향성경 앱이 설치된 안드로이드 기기에서 열어 주세요.</p>
+  </div>
+</main>
+<script>
+  // 주보 내용은 주소의 # 뒤(base64url 로 줄인 JSON)에만 있고 서버로는 보내지지 않는다. 이 페이지는 앱으로 넘겨주기만 한다
+  var data = location.hash.slice(1);
+  var ok = /^[A-Za-z0-9_-]+$/.test(data);
+  var android = /Android/i.test(navigator.userAgent);
+  var appUrl = android
+    ? 'intent://bulletin?d=' + data + '#Intent;scheme=juhyang;package=com.disciplebible;end'
+    : 'juhyang://bulletin?d=' + data;
+  var open = document.getElementById('open');
+  if (ok) {
+    open.href = appUrl;
+    // 메신저 안 브라우저에서 열렸으면 바로 앱으로 넘겨 본다(막히면 버튼을 누르면 된다)
+    if (android) setTimeout(function () { location.href = appUrl; }, 300);
+    showDate();
+  } else {
+    open.style.display = 'none';
+    var hint = document.getElementById('hint');
+    hint.className = 'err';
+    hint.textContent = '주보 내용이 없는 링크입니다. 받은 링크 전체를 다시 눌러 주세요.';
+  }
+
+  // 받은 주보 날짜를 보여 준다(지원하는 브라우저만, 못 읽어도 열기에는 지장 없음)
+  function showDate() {
+    if (typeof DecompressionStream === 'undefined') return;
+    try {
+      var b64 = data.replace(/-/g, '+').replace(/_/g, '/');
+      while (b64.length % 4) b64 += '=';
+      var bytes = Uint8Array.from(atob(b64), function (c) { return c.charCodeAt(0); });
+      var stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('deflate-raw'));
+      new Response(stream).text().then(function (t) {
+        var m = JSON.parse(t);
+        var d = /^(\d{4})-(\d{2})-(\d{2})$/.exec(m.serviceDate || '');
+        if (d) document.getElementById('date').textContent = d[1] + '년 ' + Number(d[2]) + '월 ' + Number(d[3]) + '일' + (m.title ? ' · ' + m.title : '');
+      }).catch(function () {});
+    } catch (e) {}
+  }
+</script>
+</body>
+</html>

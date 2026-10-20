@@ -1,0 +1,10 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.disciplebible",
+      "sha256_cert_fingerprints": ["E7:80:D7:65:61:65:9E:40:17:F5:59:32:67:3E:51:B2:40:13:A5:E8:BB:47:A6:73:A2:E1:63:4A:17:A0:42:1E"]
+    }
+  }
+]
