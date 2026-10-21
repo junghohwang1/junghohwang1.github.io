@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>주향성경 개인정보처리방침</title>
+<meta name="description" content="주향성경 앱의 개인정보처리방침">
+<style>
+  :root { --bg: #FBF7F0; --ink: #1B1712; --sub: #6B5E52; --navy: #2F4A73; --gold: #9A6B1E; --card: #FFFFFF; --line: #E6DCCD; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg: #14110E; --ink: #F1EAE0; --sub: #B9AC9C; --navy: #B4C8E8; --gold: #EBC57E; --card: #1F1A15; --line: #3A322A; }
+  }
+  :root[data-theme="dark"] { --bg: #14110E; --ink: #F1EAE0; --sub: #B9AC9C; --navy: #B4C8E8; --gold: #EBC57E; --card: #1F1A15; --line: #3A322A; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: system-ui, -apple-system, "Noto Sans KR", sans-serif; line-height: 1.7; }
+  main { max-width: 640px; margin: 0 auto; padding: 40px 16px 56px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 24px 20px; margin-top: 16px; }
+  h1 { font-size: 24px; margin: 0; letter-spacing: 1px; }
+  h2 { font-size: 17px; margin: 24px 0 6px; color: var(--navy); }
+  h2:first-child { margin-top: 0; }
+  p, li { color: var(--ink); font-size: 15px; }
+  .sub { color: var(--sub); font-size: 14px; margin: 6px 0 0; }
+  ul { padding-left: 20px; margin: 6px 0; }
+  a { color: var(--navy); }
+  a.btn { display: block; text-align: center; padding: 14px; border-radius: 12px; background: var(--navy); color: var(--bg); font-weight: 700; font-size: 17px; text-decoration: none; margin-top: 8px; }
+  footer { color: var(--sub); font-size: 13px; text-align: center; margin-top: 24px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>개인정보처리방침</h1>
+  <p class="sub">주향성경 안드로이드 앱 · 시행일 2026년 10월 22일</p>
+
+  <div class="card">
+    <h2>1. 개발자에게 보내는 정보는 없습니다</h2>
+    <p>주향성경은 회원 가입이 없고, 사용자의 정보를 개발자의 서버로 보내지 않습니다. 광고와 사용 통계 수집 기능도 없습니다.</p>
+
+    <h2>2. 기기에만 저장되는 정보</h2>
+    <p>다음 정보는 사용자의 기기 안에만 저장됩니다.</p>
+    <ul>
+      <li>북마크 · 형광펜 · 메모 · 내 사전</li>
+      <li>절 녹음(마이크 권한은 사용자가 녹음 버튼을 누를 때만 씁니다)</li>
+      <li>주보 사진과 사진에서 읽은 글자(글자 읽기는 기기 안에서 처리합니다)</li>
+      <li>앱 설정</li>
+    </ul>
+
+    <h2>3. 구글 드라이브 백업</h2>
+    <p>사용자가 「구글 드라이브」 백업을 고른 경우에만 다음과 같이 동작합니다.</p>
+    <ul>
+      <li>사용자가 직접 고른 본인 구글 계정의 드라이브 안 「주향성경 백업」 폴더에 백업 파일을 저장하고, 복구할 때 그 파일을 내려받습니다.</li>
+      <li>요청하는 권한은 <code>drive.file</code> 하나뿐이며, 앱이 만든 파일만 보고 다룰 수 있습니다. 사용자의 다른 드라이브 파일은 보거나 바꿀 수 없습니다.</li>
+      <li>백업 파일은 사용자 본인의 드라이브에만 있으며, 개발자는 이 파일을 볼 수 없습니다.</li>
+      <li>앱이 구글 사용자 데이터를 사용하는 방식은 <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API 서비스 사용자 데이터 정책</a>(제한적 사용 요건 포함)을 따릅니다.</li>
+      <li>설정의 「백업용 구글 계정」에서 계정을 바꿀 수 있고, 구글 계정 설정(myaccount.google.com → 보안 → 타사 앱 및 서비스)에서 언제든 권한을 해제할 수 있습니다.</li>
+    </ul>
+
+    <h2>4. 인터넷을 쓰는 기능</h2>
+    <ul>
+      <li>앱 업데이트와 성경 · 찬송가 자료 받기: GitHub에서 파일을 내려받습니다.</li>
+      <li>찬송가 · 설교 영상: 유튜브에서 영상을 불러옵니다. 교회 채널을 등록하면 그 채널의 공개 영상 목록을 읽습니다.</li>
+      <li>이 서비스들은 각 회사의 개인정보처리방침을 따릅니다.</li>
+    </ul>
+
+    <h2>5. 주보 나누기</h2>
+    <p>사용자가 「주보 공유」를 누른 경우에만 주보 내용이 링크나 파일로 만들어지며, 사용자가 고른 메신저 등으로 보내집니다. 링크의 주보 내용은 주소의 # 뒤에만 들어 있어 웹 서버로 전송되지 않습니다.</p>
+
+    <h2>6. 지우기</h2>
+    <p>앱을 지우면 기기에 저장된 정보가 모두 지워집니다. 구글 드라이브의 백업은 드라이브의 「주향성경 백업」 폴더에서 직접 지울 수 있습니다.</p>
+
+    <h2>7. 문의</h2>
+    <p>bluelabe40@gmail.com</p>
+  </div>
+
+  <footer><a href="../">주향성경 홈</a></footer>
+</main>
+</body>
+</html>
